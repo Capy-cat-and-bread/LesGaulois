@@ -1,7 +1,6 @@
 package test_fonctionnel;
 
-import java.util.Iterator;
-
+import personnages.Druide;
 import personnages.Gaulois;
 import personnages.Romain;
 
@@ -10,6 +9,8 @@ public class TestGaulois {
 		Gaulois asterix = new Gaulois("Astérix", 8);
 		Gaulois obelix = new Gaulois("Obélix", 16);
 		Romain minus = new Romain("Minus", 6);
+		Romain brutus = new Romain("Brutus", 14);
+		Druide panoramix = new Druide("Panoramix", 2);
 
 		asterix.parler("Bonjour Obélix.");
 		obelix.parler("Bonjour Astérix. Ca te dirais d'aller chasser des sangliers ?");
@@ -20,6 +21,15 @@ public class TestGaulois {
 
 		for (int i = 0; i < 3; i++) {
 			asterix.frapper(minus);
+		}
+
+		panoramix.fabriquerPotion(4, 3);
+		panoramix.booster(obelix);
+		panoramix.booster(asterix);
+
+		for (int i = 0; i < 3; i++) {
+			asterix.frapper(brutus);
+			// System.out.println("Force de Brutus" + brutus.getForce());
 		}
 	}
 }

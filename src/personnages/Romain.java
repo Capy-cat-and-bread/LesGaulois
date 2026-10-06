@@ -13,6 +13,10 @@ public class Romain {
 		return nom;
 	}
 
+	public int getForce() {
+		return force;
+	}
+	
 	public void parler(String texte) {
 		System.out.println(prendreParole() + "\"" + texte + "\"");
 	}
@@ -22,13 +26,13 @@ public class Romain {
 	}
 
 	public void recevoirCoup(int forceCoup) {
-		this.force = force - forceCoup;
-		if (this.force < 1) {
+		force = force - forceCoup;
+		if (force < 1) {
 			parler("J'abandonne !");
 		} else {
 			parler("Aïe");
 		}
-		}
+	}
 
 	@Override
 	public String toString() {

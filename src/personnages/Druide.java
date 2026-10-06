@@ -3,9 +3,15 @@ package personnages;
 import objets.Chaudron;
 
 public class Druide {
+
 	private String nom;
 	private int force;
-	private Chaudron chaudron;
+	private Chaudron chaudron = new Chaudron();
+
+	public Druide(String nom, int force) {
+		this.nom = nom;
+		this.force = force;
+	}
 
 	public String getNom() {
 		return nom;
@@ -27,7 +33,7 @@ public class Druide {
 	public void booster(Gaulois gaulois) {
 		String nomGaulois = gaulois.getNom();
 		if (chaudron.resterPotion()) {
-			if (nomGaulois == "Obélix") {
+			if (nomGaulois != null && nomGaulois.equals("Obélix")) {
 				parler("Non, " + nomGaulois + " Non ! Et tu le sais très bien !");
 			} else {
 				int forcePotion = chaudron.prendreLouche();
