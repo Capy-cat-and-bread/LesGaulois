@@ -23,6 +23,15 @@ public class Romain {
 
 	public void recevoirCoup(int forceCoup) {
 		this.force = force - forceCoup;
-	}
+		if (this.force < 1) {
+			parler("J'abandonne !");
+		} else {
+			parler("Aïe");
+		}
+		}
 
+	@Override
+	public String toString() {
+		return nom;
+	}
 }
