@@ -10,10 +10,15 @@ public class Chaudron {
 	}
 
 	public boolean resterPotion() {
-		return this.quantitePotion>0;
+		return this.quantitePotion > 0;
 	}
 
 	public int prendreLouche() {
-		//
+		if (quantitePotion > 0) {
+			quantitePotion--;
+		} else {
+			forcePotion = 0;
+		}
+		return this.forcePotion;
 	}
 }
