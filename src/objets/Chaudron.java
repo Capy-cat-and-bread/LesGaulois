@@ -9,7 +9,7 @@ public class Chaudron {
 	}
 
 	public boolean resterPotion() {
-		//
+		return this.quantitePotion>0;
 	}
 
 	public int prendreLouche() {
