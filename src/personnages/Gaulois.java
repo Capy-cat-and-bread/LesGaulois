@@ -3,6 +3,7 @@ package personnages;
 public class Gaulois {
 	private String nom;
 	private int force;
+	private int effetPossion = 1;
 
 	public Gaulois(String nom, int force) {
 		this.nom = nom;
@@ -34,6 +35,10 @@ public class Gaulois {
 	@Override
 	public String toString() {
 		return nom;
+	}
+	
+	public void boirePotion(int forcePotion) {
+		//
 	}
 
 }
