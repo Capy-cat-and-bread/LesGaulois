@@ -1,5 +1,7 @@
 package personnages;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+
 import village_gaulois.Village;
 
 public class Gaulois {
@@ -48,7 +50,13 @@ public class Gaulois {
 	}
 
 	public void sePresenter() {
-
+		if (village == null) {
+			parler("Bonjour, je m'appelle " + nom + ". Je voyage de villages en villages.");
+		} else if (village.getChef() == this) {
+			parler("Bonjour, je m'appelle " + nom + ". Je suis le chef du village : " + village.getNom() + ".");
+		} else {
+			parler("Bonjour, je m'apppelle " + nom + ". J'habite le village : " + village.getNom() + ".");
+		}
 	}
 
 }
