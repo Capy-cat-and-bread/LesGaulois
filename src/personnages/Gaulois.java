@@ -1,7 +1,5 @@
 package personnages;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
-
 import village_gaulois.Village;
 
 public class Gaulois {

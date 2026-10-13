@@ -14,17 +14,6 @@ public class Romain {
 		assert isInvariantVerified();
 	}
 
-	public static void main(String[] args) {
-		Romain minus = new Romain("Minus", 6);
-		// System.out.println(Equipement.CASQUE);
-		// System.out.println(Equipement.BOUCLIER);
-		
-		minus.sEquiper(Equipement.CASQUE);
-		minus.sEquiper(Equipement.CASQUE);
-		minus.sEquiper(Equipement.BOUCLIER);
-		minus.sEquiper(Equipement.CASQUE);
-	}
-
 	public String getNom() {
 		return nom;
 	}
@@ -40,7 +29,7 @@ public class Romain {
 	public void recevoirCoup(int forceCoup) {
 		assert isPreConditionVerified(forceCoup);
 		int forceDebut = force;
-		force = force - forceCoup;
+		force -= forceCoup;
 		if (force < 1) {
 			force = 0;
 			parler("J'abandonne !");
@@ -51,7 +40,6 @@ public class Romain {
 		assert isPostConditionVerified(forceDebut, force);
 	}
 
-	
 	public void sEquiper(Equipement equipement) {
 		switch (nbEquipement) {
 		case 2:
@@ -69,14 +57,13 @@ public class Romain {
 			break;
 		}
 	}
-	
+
 	private void ajouterEquipement(Equipement equipement) {
 		equipements[nbEquipement] = equipement;
 		nbEquipement++;
-		System.out.println("Le soldat " + nom + " s'équipe d'un " + equipement + ".");		
+		System.out.println("Le soldat " + nom + " s'équipe d'un " + equipement + ".");
 	}
-	
-	
+
 	private boolean isInvariantVerified() {
 		return force >= 0;
 	}
@@ -96,5 +83,16 @@ public class Romain {
 	@Override
 	public String toString() {
 		return nom;
+	}
+
+	public static void main(String[] args) {
+		Romain minus = new Romain("Minus", 6);
+		// System.out.println(Equipement.CASQUE);
+		// System.out.println(Equipement.BOUCLIER);
+
+		minus.sEquiper(Equipement.CASQUE);
+		minus.sEquiper(Equipement.CASQUE);
+		minus.sEquiper(Equipement.BOUCLIER);
+		minus.sEquiper(Equipement.CASQUE);
 	}
 }
