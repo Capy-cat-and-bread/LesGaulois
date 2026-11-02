@@ -3,6 +3,7 @@ package personnages;
 import java.util.Iterator;
 
 import objets.Equipement;
+import objets.Trophee;
 import village_gaulois.Musee;
 import village_gaulois.Village;
 
@@ -70,7 +71,8 @@ public class Gaulois {
 		if (nbTrophees > 0) {
 			String texte = "Je donne au musee tous mes trophees : ";
 			for (int i = 0; i < nbTrophees; i++) {
-				musee.donnerTrophees(this, trophees[i]);
+				Trophee nouveauTrophee = new Trophee(this, trophees[i]);
+				musee.donnerTrophees(this, nouveauTrophee);
 				texte += "\n - " + trophees[i];
 				trophees[i] = null;
 			}

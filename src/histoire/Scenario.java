@@ -43,6 +43,7 @@ public class Scenario {
 
 		Musee musee = new Musee();
 		obelix.faireUneDonnation(musee);
+		System.out.println(musee.extraireInstructionsOCaml());
 
 	}
 
