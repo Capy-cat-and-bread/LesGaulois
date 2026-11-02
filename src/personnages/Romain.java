@@ -23,21 +23,61 @@ public class Romain {
 	}
 
 	private String prendreParole() {
-		return "Le romain" + nom + " : ";
+		return "Le romain " + nom + " : ";
 	}
 
-	public void recevoirCoup(int forceCoup) {
-		assert isPreConditionVerified(forceCoup);
-		int forceDebut = force;
-		force -= forceCoup;
-		if (force < 1) {
-			force = 0;
-			parler("J'abandonne !");
-		} else {
-			parler("Aïe");
+	public Equipement[] recevoirCoup(int forceCoup) {
+		Equipement[] equipementEjecte = null;
+		forceCoup = calculerResistanceEquipement(forceCoup);
+		if (forceCoup > 0) {
+			force -= forceCoup;			
 		}
-		assert isInvariantVerified();
-		assert isPostConditionVerified(forceDebut, force);
+		if (force > 0) {
+			parler("Aïe");
+		} else {
+			equipementEjecte = ejecterEquipement();
+			parler("J'abandonne...");
+		}
+		return equipementEjecte;
+	}
+
+	private int calculerResistanceEquipement(int forceCoup) {
+		String texte;
+		texte = "Ma force est de " + this.force + ", et la force du coup est de " + forceCoup;
+		int resistanceEquipement = 0;
+		if (nbEquipement != 0) {
+			for (int i = 0; i < nbEquipement; i++) {
+				if ((equipements[i] != null && equipements[i].equals(Equipement.BOUCLIER))) {
+					resistanceEquipement += 6;
+				} else {
+					resistanceEquipement += 3;
+				}
+			}
+			if (resistanceEquipement >= forceCoup) {
+				texte += "\nMais heureusement, grace à mon équipement sa force a été complètement absorbée.";
+			} else {
+				texte += "\nMais heureusement, grace à mon équipement sa force est diminué de " + resistanceEquipement
+						+ " !";
+			}
+
+		}
+		parler(texte);
+		forceCoup -= resistanceEquipement;
+		return forceCoup;
+	}
+
+	private Equipement[] ejecterEquipement() {
+		Equipement[] equipementEjecte = new Equipement[nbEquipement];
+		System.out.println("L'équipement de " + nom + " s'envole sous la force du coup.");
+		int nbEquipementEjecte = 0;
+		for (int i = 0; i < nbEquipement; i++) {
+			if (equipements[i] != null) {
+				equipementEjecte[nbEquipementEjecte] = equipements[i];
+				nbEquipementEjecte++;
+				equipements[i] = null;
+			}
+		}
+		return equipementEjecte;
 	}
 
 	public void sEquiper(Equipement equipement) {
@@ -68,16 +108,12 @@ public class Romain {
 		return force >= 0;
 	}
 
-	private boolean isPreConditionVerified(int forceCoup) {
-		return forceCoup > 0;
+	public int getForce() {
+		return force;
 	}
 
-	private boolean isPostConditionVerified(int forceDebut, int forceFin) {
-		if (forceDebut == 0) {
-			return forceDebut == forceFin;
-		} else {
-			return forceDebut > forceFin;
-		}
+	public int getNbEquipement() {
+		return nbEquipement;
 	}
 
 	@Override
@@ -85,10 +121,8 @@ public class Romain {
 		return nom;
 	}
 
-	public static void main(String[] args) {
+	public static void main() {
 		Romain minus = new Romain("Minus", 6);
-		// System.out.println(Equipement.CASQUE);
-		// System.out.println(Equipement.BOUCLIER);
 
 		minus.sEquiper(Equipement.CASQUE);
 		minus.sEquiper(Equipement.CASQUE);

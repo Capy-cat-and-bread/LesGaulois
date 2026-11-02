@@ -19,17 +19,12 @@ public class Village {
 	public static void main(String[] args) {
 		Gaulois abraracourcix = new Gaulois("Abraracourcix", 6);
 		Village village = new Village("Village des Irréductibles", 30, abraracourcix);
-		// village.trouverVillageois(30);
 
 		Gaulois asterix = new Gaulois("Asterix", 8);
 		village.ajouterVillageois(asterix);
 		Gaulois obelix = new Gaulois("Obelix", 25);
 		village.ajouterVillageois(obelix);
 		Gaulois doublepolemix = new Gaulois("Doublepolémix", 4);
-		// Gaulois gaulois = village.trouverVillageois(1);
-		// System.out.println(gaulois);
-		// gaulois = village.trouverVillageois(2);
-		// System.out.println(gaulois);
 		village.afficherVillageois();
 		abraracourcix.sePresenter();
 		asterix.sePresenter();
