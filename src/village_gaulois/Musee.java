@@ -1,6 +1,5 @@
 package village_gaulois;
 
-import objets.Equipement;
 import personnages.Gaulois;
 import objets.Trophee;
 
@@ -16,14 +15,19 @@ public class Musee {
 	}
 
 	public String extraireInstructionsOCaml() {
-		String texte = "let musee = [";
+		StringBuilder bld = new StringBuilder();
+		bld.append("let musee = [");
 		for (int i = 0; i < nbTrophee; i++) {
-			texte += "\"" + trophees[i].getGaulois().getNom() + "\", \"" + trophees[i].getEquipement() + "\"";
-			if (i < nbTrophee-1) {
-				texte += ";";
+			bld.append("\"");
+			bld.append(trophees[i].getGaulois().getNom());
+			bld.append("\", \"");
+			bld.append(trophees[i].getEquipement());
+			bld.append("\"");
+			if (i < nbTrophee - 1) {
+				bld.append(";");
 			}
 		}
-		texte += "]";
-		return texte;
+		bld.append("]");
+		return bld.toString();
 	}
 }

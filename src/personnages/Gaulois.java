@@ -1,7 +1,5 @@
 package personnages;
 
-import java.util.Iterator;
-
 import objets.Equipement;
 import objets.Trophee;
 import village_gaulois.Musee;
@@ -44,10 +42,10 @@ public class Gaulois {
 			effetPotion = 1;
 		}
 		if (tropheesTemp != null) {
-			for (int i = 0; tropheesTemp != null && i < tropheesTemp.length; i++, nbTrophees++) {
+			for (int i = 0; i < tropheesTemp.length; i++) {
 				if (tropheesTemp[i] != null) {
 					trophees[nbTrophees] = tropheesTemp[i];
-					tropheesTemp[i] = null;
+					nbTrophees++;
 				}
 			}
 		}
@@ -58,27 +56,37 @@ public class Gaulois {
 	}
 
 	public void sePresenter() {
+		StringBuilder phrase = new StringBuilder();
+		phrase.append("Bonjour, je m'appelle ");
+		phrase.append(nom);
+		phrase.append(". ");
 		if (village == null) {
-			parler("Bonjour, je m'appelle " + nom + ". Je voyage de villages en villages.");
-		} else if (village.getChef() == this) {
-			parler("Bonjour, je m'appelle " + nom + ". Je suis le chef du village : " + village.getNom() + ".");
+			phrase.append("Je voyage de villages en villages.");
 		} else {
-			parler("Bonjour, je m'apppelle " + nom + ". J'habite le village : " + village.getNom() + ".");
+			if (village.getChef() == this) {
+				phrase.append("Je suis le chef du village : ");
+			} else {
+				phrase.append("J'habite le village : ");
+			}
+			phrase.append(village.getNom());
+			phrase.append(".");
 		}
+		parler(phrase.toString());
 	}
 
 	public void faireUneDonnation(Musee musee) {
 		if (nbTrophees > 0) {
-			String texte = "Je donne au musee tous mes trophees : ";
+			StringBuilder texte = new StringBuilder("Je donne au musee tous mes trophees : ");
 			for (int i = 0; i < nbTrophees; i++) {
 				Trophee nouveauTrophee = new Trophee(this, trophees[i]);
 				musee.donnerTrophees(this, nouveauTrophee);
-				texte += "\n - " + trophees[i];
+				texte.append("\n - ");
+				texte.append(trophees[i]);
 				trophees[i] = null;
 			}
 			nbTrophees = 0;
-			parler(texte);
+			parler(texte.toString());
 		}
 	}
-	
+
 }
